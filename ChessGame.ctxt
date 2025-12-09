@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ChessGame
+comment1.params=
+comment1.target=ChessGame()
+comment2.params=
+comment2.target=void\ initBoard()
+comment3.params=r\ c
+comment3.target=void\ handleClick(int,\ int)
+comment4.params=
+comment4.target=void\ highlightMoves()
+comment5.params=
+comment5.target=void\ updateDisplay()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7
