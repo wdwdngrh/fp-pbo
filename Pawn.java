@@ -14,7 +14,7 @@ class Pawn extends Piece {
     ArrayList<Position> getMoves(Position from, Board b) {
         ArrayList<Position> moves = new ArrayList<>();
         int dir = player == Player.WHITE ? -1 : 1;
-        
+    
         Position fwd = new Position(from.r + dir, from.c);
         if (fwd.valid() && b.getPiece(fwd) == null) {
             moves.add(fwd);
@@ -23,12 +23,24 @@ class Pawn extends Piece {
                 if (b.getPiece(fwd2) == null) moves.add(fwd2);
             }
         }
-        
+    
         for (int dc : new int[]{-1, 1}) {
             Position cap = new Position(from.r + dir, from.c + dc);
-            if (cap.valid() && b.getPiece(cap) != null && b.getPiece(cap).player != player)
+    
+            if (cap.valid() && b.getPiece(cap) != null && b.getPiece(cap).player != player) {
                 moves.add(cap);
+            }
+    
+            if (b.enPassantTarget != null && cap.equals(b.enPassantTarget)) {
+                Position side = new Position(from.r, from.c + dc);
+    
+                Piece adj = b.getPiece(side);
+                if (adj instanceof Pawn && adj.player != player) {
+                    moves.add(cap);
+                }
+            }
         }
-        return moves;
-    }
+
+    return moves;
+}
 }
